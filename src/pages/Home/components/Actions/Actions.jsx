@@ -21,7 +21,7 @@ export const Actions = () => {
 						}, 2000);
 					}}
 				>
-					Recent count after 2 sec
+					Reset count after 2 sec
 				</button>
 			</div>
 
