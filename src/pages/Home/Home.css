@@ -1,0 +1,20 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+.home {
+	padding: 2rem;
+	transition: all .2s;
+}
+
+.home h1 {
+	margin: 0;
+}
+
+.home_light {
+	color: #232323;
+	background-color: #fff;
+}

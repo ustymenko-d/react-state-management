@@ -1,15 +1,10 @@
-import { useState } from "react";
-import "./App.css";
+import PropTypes from 'prop-types';
+import styles from './Actions.module.css'
 
-function App() {
-	const [count, setCount] = useState(0);
-	const [pageTheme, setPageTheme] = useState("dark");
-
+export const Actions = ({ setCount, setIsDarkTheme }) => {
 	return (
-		<>
-			<h1>Count: {count}</h1>
-      <h2>Current theme: {pageTheme}</h2>
-			<div className="card">
+		<div className={styles.actions}>
+			<div className={styles.actions__counter}>
 				<button onClick={() => setCount((count) => count + 1)}>
 					Increment count
 				</button>
@@ -23,18 +18,22 @@ function App() {
 						}, 2000);
 					}}
 				>
-					Recent count after 2sec
+					Recent count after 2 sec
 				</button>
 			</div>
+
 			<button
 				onClick={() =>
-					setPageTheme((oldTheme) => (oldTheme === "dark" ? "light" : "dark"))
+					setIsDarkTheme((oldVal) => !oldVal)
 				}
 			>
 				Change theme
 			</button>
-		</>
+		</div>
 	);
-}
+};
 
-export default App;
+Actions.propTypes = {
+	setCount: PropTypes.func,
+	setIsDarkTheme: PropTypes.func,
+}

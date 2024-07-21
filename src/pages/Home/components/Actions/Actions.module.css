@@ -1,0 +1,19 @@
+.actions {
+	padding: 2em;
+
+	gap: 1rem;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.actions__counter {
+	margin-bottom: 1rem;
+}
+
+.actions,
+.actions__counter {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
