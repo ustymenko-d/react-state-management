@@ -6,14 +6,13 @@ import './Home.css';
 
 const Home = () => {
 	const isDarkTheme = useStore((state) => state.isDarkTheme);
-	const changeTheme = useStore((state) => state.changeTheme);
+	const setDarkTheme = useStore((state) => state.setDarkTheme);
 
 	useEffect(() => {
-		const mq = window.matchMedia('(prefers-color-scheme: dark)');
+		const sessionState = sessionStorage.getItem('appState');
+		const sessionDarkTheme = JSON.parse(sessionState).state.isDarkTheme;
 
-		if (mq.matches && !isDarkTheme) {
-			changeTheme(true);
-		}
+		sessionDarkTheme ? setDarkTheme(true) : setDarkTheme(false);
 	}, []);
 
 	return (

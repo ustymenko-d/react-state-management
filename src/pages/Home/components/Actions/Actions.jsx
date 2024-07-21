@@ -6,7 +6,7 @@ export const Actions = () => {
 	const dec = useStore((state) => state.dec);
 	const reset = useStore((state) => state.reset);
 	const isDarkTheme = useStore((state) => state.isDarkTheme);
-	const changeTheme = useStore((state) => state.changeTheme);
+	const setDarkTheme = useStore((state) => state.setDarkTheme);
 
 	return (
 		<div className={styles.actions}>
@@ -24,7 +24,7 @@ export const Actions = () => {
 				</button>
 			</div>
 
-			<button onClick={() => changeTheme(!isDarkTheme)}>Change theme</button>
+			<button onClick={() => setDarkTheme(!isDarkTheme)}>Change theme</button>
 		</div>
 	);
 };
