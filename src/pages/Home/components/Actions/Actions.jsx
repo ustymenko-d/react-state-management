@@ -1,39 +1,30 @@
-import PropTypes from 'prop-types';
-import styles from './Actions.module.css'
+import { useStore } from '../../../../store';
+import styles from './Actions.module.css';
 
-export const Actions = ({ setCount, setIsDarkTheme }) => {
+export const Actions = () => {
+	const inc = useStore((state) => state.inc);
+	const dec = useStore((state) => state.dec);
+	const reset = useStore((state) => state.reset);
+	const isDarkTheme = useStore((state) => state.isDarkTheme);
+	const changeTheme = useStore((state) => state.changeTheme);
+
 	return (
 		<div className={styles.actions}>
 			<div className={styles.actions__counter}>
-				<button onClick={() => setCount((count) => count + 1)}>
-					Increment count
-				</button>
-				<button onClick={() => setCount((count) => count - 1)}>
-					Decrement count
-				</button>
+				<button onClick={inc}>Increment count</button>
+				<button onClick={dec}>Decrement count</button>
 				<button
 					onClick={() => {
 						setTimeout(() => {
-							setCount(0);
+							reset();
 						}, 2000);
 					}}
 				>
-					Recent count after 2 sec
+					Reset count after 2 sec
 				</button>
 			</div>
 
-			<button
-				onClick={() =>
-					setIsDarkTheme((oldVal) => !oldVal)
-				}
-			>
-				Change theme
-			</button>
+			<button onClick={() => changeTheme(!isDarkTheme)}>Change theme</button>
 		</div>
 	);
 };
-
-Actions.propTypes = {
-	setCount: PropTypes.func,
-	setIsDarkTheme: PropTypes.func,
-}
