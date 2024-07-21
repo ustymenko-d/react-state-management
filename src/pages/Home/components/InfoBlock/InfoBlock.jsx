@@ -1,15 +1,13 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { Context } from '../../../../store/Context';
 
-export const InfoBlock = ({ count, isDarkTheme }) => {
+export const InfoBlock = () => {
+	const { count, isDarkTheme } = useContext(Context);
+
 	return (
 		<div>
 			<h2>Count: {count}</h2>
 			<h2>Current theme: {isDarkTheme ? 'dark' : 'light'}</h2>
 		</div>
 	);
-};
-
-InfoBlock.propTypes = {
-	count: PropTypes.number,
-	isDarkTheme: PropTypes.bool,
 };

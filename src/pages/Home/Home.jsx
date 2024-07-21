@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Context } from '../../store/Context';
 import { InfoBlock } from './components/InfoBlock/InfoBlock';
 import { Actions } from './components/Actions/Actions';
 import './Home.css';
@@ -18,19 +19,15 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div className={isDarkTheme ? 'home home_dark' : 'home home_light'}>
-			<h1>React state management</h1>
+		<Context.Provider value={{ count, setCount, isDarkTheme, setIsDarkTheme }}>
+			<div className={isDarkTheme ? 'home home_dark' : 'home home_light'}>
+				<h1>React state management</h1>
 
-			<InfoBlock
-				count={count}
-				isDarkTheme={isDarkTheme}
-			/>
+				<InfoBlock />
 
-			<Actions
-				setCount={setCount}
-				setIsDarkTheme={setIsDarkTheme}
-			/>
-		</div>
+				<Actions />
+			</div>
+		</Context.Provider>
 	);
 };
 

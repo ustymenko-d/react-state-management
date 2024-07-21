@@ -1,7 +1,10 @@
-import PropTypes from 'prop-types';
-import styles from './Actions.module.css'
+import { useContext } from 'react';
+import { Context } from '../../../../store/Context';
+import styles from './Actions.module.css';
 
-export const Actions = ({ setCount, setIsDarkTheme }) => {
+export const Actions = () => {
+	const { setCount, setIsDarkTheme } = useContext(Context);
+
 	return (
 		<div className={styles.actions}>
 			<div className={styles.actions__counter}>
@@ -22,18 +25,9 @@ export const Actions = ({ setCount, setIsDarkTheme }) => {
 				</button>
 			</div>
 
-			<button
-				onClick={() =>
-					setIsDarkTheme((oldVal) => !oldVal)
-				}
-			>
+			<button onClick={() => setIsDarkTheme((oldVal) => !oldVal)}>
 				Change theme
 			</button>
 		</div>
 	);
 };
-
-Actions.propTypes = {
-	setCount: PropTypes.func,
-	setIsDarkTheme: PropTypes.func,
-}
