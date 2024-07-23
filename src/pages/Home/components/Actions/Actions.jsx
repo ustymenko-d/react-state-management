@@ -1,20 +1,21 @@
-import PropTypes from 'prop-types';
-import styles from './Actions.module.css'
+import PropTypes from "prop-types";
+import styles from "./Actions.module.css";
 
-export const Actions = ({ setCount, setIsDarkTheme }) => {
+export const Actions = ({
+	incrementCount,
+	decrementCount,
+	resetCount,
+	toggleTheme,
+}) => {
 	return (
 		<div className={styles.actions}>
 			<div className={styles.actions__counter}>
-				<button onClick={() => setCount((count) => count + 1)}>
-					Increment count
-				</button>
-				<button onClick={() => setCount((count) => count - 1)}>
-					Decrement count
-				</button>
+				<button onClick={incrementCount}>Increment count</button>
+				<button onClick={decrementCount}>Decrement count</button>
 				<button
 					onClick={() => {
 						setTimeout(() => {
-							setCount(0);
+							resetCount()
 						}, 2000);
 					}}
 				>
@@ -22,18 +23,14 @@ export const Actions = ({ setCount, setIsDarkTheme }) => {
 				</button>
 			</div>
 
-			<button
-				onClick={() =>
-					setIsDarkTheme((oldVal) => !oldVal)
-				}
-			>
-				Change theme
-			</button>
+			<button onClick={toggleTheme}>Change theme</button>
 		</div>
 	);
 };
 
 Actions.propTypes = {
-	setCount: PropTypes.func,
-	setIsDarkTheme: PropTypes.func,
-}
+	incrementCount: PropTypes.func,
+	decrementCount: PropTypes.func,
+	resetCount: PropTypes.func,
+	toggleTheme: PropTypes.func,
+};
