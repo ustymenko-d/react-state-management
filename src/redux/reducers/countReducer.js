@@ -1,4 +1,4 @@
-import ACTION_TYPES from './actionTypes';
+import ACTION_TYPES from '../actions/actionTypes';
 
 const defaultState = {
 	count: 0,
