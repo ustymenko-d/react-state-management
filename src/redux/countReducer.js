@@ -1,16 +1,18 @@
+import ACTION_TYPES from './actionTypes';
+
 const defaultState = {
 	count: 0,
 };
 
 export const countReducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case 'INCREMENT':
+		case ACTION_TYPES.INCREMENT:
 			return { ...state, count: state.count + 1 };
 
-		case 'DECREMENT':
+		case ACTION_TYPES.DECREMENT:
 			return { ...state, count: state.count - 1 };
 
-		case 'RESET_COUNT':
+		case ACTION_TYPES.RESET_COUNT:
 			return { ...state, count: defaultState.count };
 
 		default:

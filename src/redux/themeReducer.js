@@ -1,13 +1,15 @@
+import ACTION_TYPES from './actionTypes';
+
 const defaultState = {
 	isDarkTheme: false,
 };
 
 export const themeReducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case 'TOGGLE_THEME':
+		case ACTION_TYPES.TOGGLE_THEME:
 			return { ...state, isDarkTheme: !state.isDarkTheme };
 
-		case 'SWITCH_TO_DARK_THEME':
+		case ACTION_TYPES.SWITCH_TO_DARK_THEME:
 			return { ...state, isDarkTheme: action.payload };
 
 		default:
