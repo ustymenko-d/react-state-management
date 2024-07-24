@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import { countReducer } from './countReducer';
 import { themeReducer } from './themeReducer';
 
