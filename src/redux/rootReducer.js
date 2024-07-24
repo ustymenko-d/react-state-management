@@ -1,26 +1,9 @@
-const defaultState = {
-	count: 0,
-	isDarkTheme: false,
-};
+import { combineReducers } from 'redux';
 
-export const rootReducer = (state = defaultState, action) => {
-	switch (action.type) {
-		case "INCREMENT":
-			return { ...state, count: state.count + 1 };
+import { countReducer } from './countReducer';
+import { themeReducer } from './themeReducer';
 
-		case "DECREMENT":
-			return { ...state, count: state.count - 1 };
-
-		case "RESET_COUNT":
-			return { ...state, count: defaultState.count };
-
-		case "TOGGLE_THEME":
-			return { ...state, isDarkTheme: !state.isDarkTheme };
-
-		case "SWITCH_TO_DARK_THEME":
-			return { ...state, isDarkTheme: action.payload };
-
-		default:
-			return state;
-	}
-};
+export const rootReducer = combineReducers({
+	count: countReducer,
+	theme: themeReducer,
+});

@@ -6,8 +6,8 @@ import "./Home.css";
 
 const Home = () => {
 	const dispatch = useDispatch();
-	const count = useSelector((state) => state.count);
-	const isDarkTheme = useSelector((state) => state.isDarkTheme);
+	const count = useSelector((state) => state.count.count);
+	const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
 
 	const incrementCount = () => {
 		dispatch({ type: "INCREMENT" });
