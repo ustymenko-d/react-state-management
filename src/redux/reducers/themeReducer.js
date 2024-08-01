@@ -16,3 +16,13 @@ export const themeReducer = (state = defaultState, action) => {
 			return state;
 	}
 };
+
+export const toggleThemeAction = (payload) => ({
+	type: ACTION_TYPES.TOGGLE_THEME,
+	payload,
+});
+
+export const switchToDarkThemeAction = (payload) => ({
+	type: ACTION_TYPES.SWITCH_TO_DARK_THEME,
+	payload,
+});

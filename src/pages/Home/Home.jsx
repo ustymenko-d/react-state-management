@@ -1,10 +1,21 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchGallery } from '../../redux/actions/asyncActions/gallery';
+import {
+	switchToDarkThemeAction,
+	toggleThemeAction,
+} from '../../redux/reducers/themeReducer';
+import {
+	decrementAction,
+	incrementAction,
+	resetCountAction,
+} from '../../redux/reducers/countReducer';
+
 import { InfoBlock } from './components/InfoBlock/InfoBlock';
 import { Actions } from './components/Actions/Actions';
-import './Home.css';
-import { fetchGallery } from '../../redux/actions/asyncActions/gallery';
 import { Gallery } from './components/Gallery/Gallery';
+
+import './Home.css';
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -13,24 +24,23 @@ const Home = () => {
 	const gallery = useSelector((state) => state.gallery.gallery);
 
 	const incrementCount = () => {
-		dispatch({ type: 'INCREMENT' });
+		dispatch(incrementAction());
 	};
 
 	const decrementCount = () => {
-		dispatch({ type: 'DECREMENT' });
-		``;
+		dispatch(decrementAction());
 	};
 
 	const resetCount = () => {
-		dispatch({ type: 'RESET_COUNT' });
+		dispatch(resetCountAction());
 	};
 
 	const toggleTheme = () => {
-		dispatch({ type: 'TOGGLE_THEME' });
+		dispatch(toggleThemeAction());
 	};
 
 	const switchToDarkTheme = () => {
-		dispatch({ type: 'SWITCH_TO_DARK_THEME', payload: true });
+		dispatch(switchToDarkThemeAction(true));
 	};
 
 	const addGallery = () => {

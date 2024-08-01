@@ -19,3 +19,18 @@ export const countReducer = (state = defaultState, action) => {
 			return state;
 	}
 };
+
+export const incrementAction = (payload) => ({
+	type: ACTION_TYPES.INCREMENT,
+	payload,
+});
+
+export const decrementAction = (payload) => ({
+	type: ACTION_TYPES.DECREMENT,
+	payload,
+});
+
+export const resetCountAction = (payload) => ({
+	type: ACTION_TYPES.RESET_COUNT,
+	payload,
+});

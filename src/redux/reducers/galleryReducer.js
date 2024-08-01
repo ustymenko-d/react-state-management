@@ -9,3 +9,8 @@ export const galleryReducer = (state = defaultState, action) => {
 		? { ...state, gallery: [...action.payload] }
 		: state;
 };
+
+export const fetchGalleryAction = (payload) => ({
+	type: ACTION_TYPES.FETCH_GALLERY,
+	payload,
+});
