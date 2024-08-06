@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux';
-import { countReducer } from './countReducer';
-import { themeReducer } from './themeReducer';
-import { galleryReducer } from './galleryReducer';
+import { combineSlices } from '@reduxjs/toolkit'
+import countSlice from '../slices/countSlice'
+import themeSlice from '../slices/themeSlice'
 
-export const rootReducer = combineReducers({
-	count: countReducer,
-	theme: themeReducer,
-	gallery: galleryReducer,
-});
+export const rootReducer = combineSlices({
+	count: countSlice,
+	theme: themeSlice,
+})
