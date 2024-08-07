@@ -8,11 +8,21 @@ import { Actions } from './components/Actions/Actions'
 import './Home.css'
 
 const Home = () => {
-	const { increment, decrement, resetCount, switchToDarkTheme, toggleTheme } =
-		useActions()
+	const {
+		increment,
+		decrement,
+		resetCount,
+		switchToDarkTheme,
+		toggleTheme,
+		fetchPosts,
+		fetchPostsById,
+	} = useActions()
 
 	const count = useSelector((state) => state.count.count)
 	const isDarkTheme = useSelector((state) => state.theme.isDarkTheme)
+	const postsLoading = useSelector((state) => state.posts.postsLoading)
+	const allPosts = useSelector((state) => state.posts.allPosts)
+	const singlePost = useSelector((state) => state.posts.singlePost)
 
 	const incrementCount = () => {
 		increment()
@@ -33,6 +43,15 @@ const Home = () => {
 	const switchToDarkThemeHandler = () => {
 		switchToDarkTheme()
 	}
+
+	const fetchPostsByIdHandler = (id) => {
+		fetchPostsById(id)
+	}
+
+	useEffect(() => {
+		fetchPosts()
+		console.log(allPosts)
+	}, [])
 
 	useEffect(() => {
 		const mq = window.matchMedia('(prefers-color-scheme: dark)')
@@ -56,7 +75,16 @@ const Home = () => {
 				decrementCount={decrementCount}
 				resetCount={resetCountHandler}
 				toggleTheme={toggleThemeHandler}
+				fetchPostsByIdHandler={fetchPostsByIdHandler}
 			/>
+
+			{postsLoading && <p>loading...</p>}
+			{singlePost.id && (
+				<p>
+					<b>Post id:</b> {singlePost.id}. <br /> <b>Titile:</b>{' '}
+					{singlePost.title}
+				</p>
+			)}
 		</div>
 	)
 }

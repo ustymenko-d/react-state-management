@@ -6,6 +6,7 @@ export const Actions = ({
 	decrementCount,
 	resetCount,
 	toggleTheme,
+	fetchPostsByIdHandler,
 }) => {
 	return (
 		<div className={styles.actions}>
@@ -23,6 +24,12 @@ export const Actions = ({
 			</div>
 
 			<button onClick={toggleTheme}>Change theme</button>
+			<button
+				onClick={() => {
+					fetchPostsByIdHandler(+prompt('Enter post id (1-200):', 1))
+				}}>
+				Fetch posts by id
+			</button>
 		</div>
 	)
 }
@@ -32,4 +39,5 @@ Actions.propTypes = {
 	decrementCount: PropTypes.func,
 	resetCount: PropTypes.func,
 	toggleTheme: PropTypes.func,
+	fetchPostsByIdHandler: PropTypes.func,
 }
