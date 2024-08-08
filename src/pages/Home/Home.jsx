@@ -16,8 +16,11 @@ const Home = () => {
 		toggleTheme,
 		fetchPosts,
 		fetchPostsById,
+		setSinglePost,
 	} = useActions()
 
+	const localDataRoot = JSON.parse(localStorage.getItem('persist:root'))
+	const localDataPosts = JSON.parse(localStorage.getItem('persist:posts'))
 	const count = useSelector((state) => state.count.count)
 	const isDarkTheme = useSelector((state) => state.theme.isDarkTheme)
 	const postsLoading = useSelector((state) => state.posts.postsLoading)
@@ -48,16 +51,23 @@ const Home = () => {
 		fetchPostsById(id)
 	}
 
+	const setSinglePostHandler = (singlePost) => {
+		setSinglePost(singlePost)
+	}
+
 	useEffect(() => {
-		fetchPosts()
-		console.log(allPosts)
+		if (!localDataRoot) {
+			const mq = window.matchMedia('(prefers-color-scheme: dark)')
+
+			if (mq.matches && !isDarkTheme) {
+				switchToDarkThemeHandler()
+			}
+		}
 	}, [])
 
 	useEffect(() => {
-		const mq = window.matchMedia('(prefers-color-scheme: dark)')
-
-		if (mq.matches && !isDarkTheme) {
-			switchToDarkThemeHandler()
+		if (!localDataPosts || !JSON.parse(localDataPosts.allPosts).length) {
+			fetchPosts()
 		}
 	}, [])
 
@@ -75,7 +85,10 @@ const Home = () => {
 				decrementCount={decrementCount}
 				resetCount={resetCountHandler}
 				toggleTheme={toggleThemeHandler}
+				allPosts={allPosts}
 				fetchPostsByIdHandler={fetchPostsByIdHandler}
+				setSinglePostHandler={setSinglePostHandler}
+				singlePost={singlePost}
 			/>
 
 			{postsLoading && <p>loading...</p>}
