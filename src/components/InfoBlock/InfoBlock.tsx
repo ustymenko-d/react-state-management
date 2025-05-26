@@ -2,8 +2,10 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/types'
 
 export const InfoBlock = () => {
-	const count = useSelector((state: RootState) => state.count.count)
-	const isDarkTheme = useSelector((state: RootState) => state.theme.isDarkTheme)
+	const { count, isDarkTheme } = useSelector((state: RootState) => ({
+		count: state.count.count,
+		isDarkTheme: state.theme.isDarkTheme,
+	}))
 
 	return (
 		<div>

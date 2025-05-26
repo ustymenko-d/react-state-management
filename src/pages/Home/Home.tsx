@@ -11,8 +11,11 @@ import './Home.css'
 
 const Home = () => {
 	const dispatch = useDispatch<AppDispatch>()
-	const isDarkTheme = useSelector((state: RootState) => state.theme.isDarkTheme)
-	const gallery = useSelector((state: RootState) => state.gallery.gallery)
+
+	const { gallery, isDarkTheme } = useSelector((state: RootState) => ({
+		gallery: state.gallery.gallery,
+		isDarkTheme: state.theme.isDarkTheme,
+	}))
 
 	const switchToDarkTheme = () => dispatch(switchToDarkThemeAction(true))
 

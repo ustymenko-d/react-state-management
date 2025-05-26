@@ -13,32 +13,28 @@ import styles from './Actions.module.css'
 export const Actions = () => {
 	const dispatch = useDispatch<AppDispatch>()
 
-	const incrementCount = () => dispatch(incrementAction())
-	const decrementCount = () => dispatch(decrementAction())
-	const resetCount = () => dispatch(resetCountAction())
-	const toggleTheme = () => dispatch(toggleThemeAction())
-	const addGallery = () => dispatch(fetchGallery())
-
-	const handleResetCount = () => {
-		setTimeout(() => {
-			resetCount()
-		}, 2000)
+	const actions = {
+		increment: () => dispatch(incrementAction()),
+		decrement: () => dispatch(decrementAction()),
+		reset: () => dispatch(resetCountAction()),
+		toggleTheme: () => dispatch(toggleThemeAction()),
+		fetchGallery: () => dispatch(fetchGallery()),
 	}
 
-	const handleAddGallery = () => {
-		addGallery()
+	const handleResetCount = () => {
+		setTimeout(actions.reset, 2000)
 	}
 
 	return (
 		<div className={styles.actions}>
 			<div className={styles.actions__counter}>
-				<button onClick={incrementCount}>Increment count</button>
-				<button onClick={decrementCount}>Decrement count</button>
+				<button onClick={actions.increment}>Increment count</button>
+				<button onClick={actions.decrement}>Decrement count</button>
 				<button onClick={handleResetCount}>Reset count after 2 sec</button>
 			</div>
 
-			<button onClick={toggleTheme}>Change theme</button>
-			<button onClick={handleAddGallery}>Fetch gallery</button>
+			<button onClick={actions.toggleTheme}>Change theme</button>
+			<button onClick={actions.fetchGallery}>Fetch gallery</button>
 		</div>
 	)
 }
