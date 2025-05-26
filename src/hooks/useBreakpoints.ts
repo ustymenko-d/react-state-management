@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useResponsiveJSX = (breakpoints) => {
+export const useBreakpoints = (breakpoints: number[]): number => {
 	const [index, setIndex] = useState(0)
 
 	useEffect(() => {
