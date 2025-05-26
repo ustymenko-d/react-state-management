@@ -1,13 +1,27 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState = {
+export interface IPost {
+	userId: number
+	id: number
+	title: string
+	body: string
+}
+
+interface IPostsState {
+	allPosts: IPost[]
+	singlePost: IPost | null
+	postsLoading: boolean
+	error: string | null
+}
+
+const initialState: IPostsState = {
 	allPosts: [],
-	singlePost: {},
+	singlePost: null,
 	postsLoading: false,
 	error: null,
 }
 
-export const fetchPosts = createAsyncThunk(
+export const fetchPosts = createAsyncThunk<IPost[]>(
 	'Posts/fetchPosts',
 	async (_, { rejectWithValue }) => {
 		try {
@@ -15,16 +29,14 @@ export const fetchPosts = createAsyncThunk(
 
 			if (!response.ok) throw new Error('Something went wrong!')
 
-			const data = await response.json()
-
-			return data
-		} catch (error) {
+			return await response.json()
+		} catch (error: any) {
 			return rejectWithValue(error.message)
 		}
 	}
 )
 
-export const fetchPostsById = createAsyncThunk(
+export const fetchPostsById = createAsyncThunk<IPost, number>(
 	'Posts/fetchPostsById',
 	async (postId, { rejectWithValue }) => {
 		try {
@@ -34,20 +46,18 @@ export const fetchPostsById = createAsyncThunk(
 
 			if (!response.ok) throw new Error('Something went wrong!')
 
-			const data = await response.json()
-
-			return data
-		} catch (error) {
+			return await response.json()
+		} catch (error: any) {
 			return rejectWithValue(error.message)
 		}
 	}
 )
 
-export const postsSlice = createSlice({
+const postsSlice = createSlice({
 	name: 'Posts',
 	initialState,
 	reducers: {
-		setSinglePost: (state, action) => {
+		setSinglePost: (state, action: PayloadAction<IPost>) => {
 			state.singlePost = action.payload
 		},
 	},
@@ -63,7 +73,7 @@ export const postsSlice = createSlice({
 			})
 			.addCase(fetchPosts.rejected, (state, action) => {
 				state.postsLoading = false
-				state.error = action.payload
+				state.error = action.payload as string
 			})
 
 			.addCase(fetchPostsById.pending, (state) => {
@@ -76,7 +86,7 @@ export const postsSlice = createSlice({
 			})
 			.addCase(fetchPostsById.rejected, (state, action) => {
 				state.postsLoading = false
-				state.error = action.payload
+				state.error = action.payload as string
 			})
 	},
 })

@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+interface IThemeState {
+	isDarkTheme: boolean
+}
+
+const initialState: IThemeState = {
 	isDarkTheme: false,
 }
 

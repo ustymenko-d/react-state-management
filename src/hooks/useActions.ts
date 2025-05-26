@@ -1,12 +1,13 @@
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import { countActions } from '../redux/slices/countSlice'
-import { themeActions } from '../redux/slices/themeSlice'
+import { AppDispatch } from '../redux/store'
+import { countActions } from '../redux/slices/count.slice'
+import { themeActions } from '../redux/slices/theme.slice'
 import {
 	fetchPosts,
 	fetchPostsById,
 	postsActions,
-} from '../redux/slices/postsSlice'
+} from '../redux/slices/posts.slice'
 
 const allActions = {
 	...countActions,
@@ -17,6 +18,6 @@ const allActions = {
 }
 
 export const useActions = () => {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch<AppDispatch>()
 	return bindActionCreators(allActions, dispatch)
 }

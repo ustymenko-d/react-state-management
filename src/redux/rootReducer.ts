@@ -1,7 +1,7 @@
 import { combineSlices } from '@reduxjs/toolkit'
-import countSlice from '../slices/countSlice'
-import themeSlice from '../slices/themeSlice'
-import postsSlice from '../slices/postsSlice'
+import countSlice from './slices/count.slice'
+import themeSlice from './slices/theme.slice'
+import postsSlice from './slices/posts.slice'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
